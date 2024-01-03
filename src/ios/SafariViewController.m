@@ -151,6 +151,15 @@
   }
 }
 
+- (void)safariViewController:(SFSafariViewController *)controller initialLoadDidRedirectTo:(NSURL *)URL {
+  if (self.callbackId != nil) {
+    CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"loading", @"url": URL.absoluteString}];
+    [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
+  }
+}
+
+
 - (NSArray<UIActivity *> *)safariViewController:(SFSafariViewController *)
               controller activityItemsForURL:(NSURL *)URL
               title:(nullable NSString *)title {
