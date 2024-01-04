@@ -151,7 +151,7 @@
   }
 }
 
-- (void)safariViewController:(SFSafariViewController *)controller initialLoadDidRedirectTo:(NSURL *)URL {
+- (void)safariViewController:(SFSafariViewController *)controller initialLoadDidRedirectToURL:(NSURL *)URL {
   if (self.callbackId != nil) {
     CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"loading", @"url": URL.absoluteString}];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
