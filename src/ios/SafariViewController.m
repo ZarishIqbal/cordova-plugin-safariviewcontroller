@@ -43,7 +43,7 @@
 }
 - (void)hide:(CDVInvokedUrlCommand*)command {
     [self.webView removeFromSuperview];
-    self.webView = nil;
+    // self.webView = nil;
 
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"closed"}];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
