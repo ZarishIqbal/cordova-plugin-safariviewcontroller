@@ -1,5 +1,5 @@
 #import <WebKit/WebKit.h>
-@interface SafariViewController : UIViewController
+@interface UIWebViewController : UIViewController
 
 @property (strong, nonatomic) WKWebView *webView;
 
