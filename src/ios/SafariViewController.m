@@ -32,6 +32,7 @@
     WKWebView *webView = [[WKWebView alloc] initWithFrame:self.viewController.view.frame configuration:configuration];
     webView.navigationDelegate = self;
     [self.viewController.view addSubview:webView];
+    self.callbackId = command.callbackId;
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
