@@ -1,4 +1,6 @@
 #import <WebKit/WebKit.h>
+#import <Cordova/CDVPlugin.h>
+
 @interface UIWebViewController : UIViewController
 
 @property (nonatomic, copy) NSString* callbackId;
@@ -11,8 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) WKWebView *webView;
 
-- (BOOL)isAvailable;
-- (void)show:(CDVInvokedUrlCommand*)command;
-- (void)hide:(CDVInvokedUrlCommand*)command;
+- (BOOL) isAvailable;
+- (void) show:(CDVInvokedUrlCommand*)command;
+- (void) hide:(CDVInvokedUrlCommand*)command;
 
 @end
