@@ -1,5 +1,5 @@
 #import "SafariViewController.h"
-
+#import "UIWebViewController.h"
 @implementation SafariViewController
 {
    UIWebViewController *wc;
