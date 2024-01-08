@@ -15,7 +15,7 @@
 @property (strong, nonatomic) WKWebView *webView;
 
 - (BOOL) isAvailable;
-- (NSDictionary) show:(CDVInvokedUrlCommand*)command;
-- (NSDictionary) hide:(CDVInvokedUrlCommand*)command;
+- (NSDictionary*) show:(CDVInvokedUrlCommand*)command;
+- (NSDictionary*) hide:(CDVInvokedUrlCommand*)command;
 
 @end

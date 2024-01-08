@@ -6,7 +6,7 @@
 }
 
 //initialize UIWebViewController
-- (void)pluginInitialize {
+- (void)pluginInitialize:(CDVInvokedUrlCommand*)command {
    wc = [[UIWebViewController alloc] initWithCallbackId:command.callbackId withDelegate:self.commandDelegate];
 }
 
