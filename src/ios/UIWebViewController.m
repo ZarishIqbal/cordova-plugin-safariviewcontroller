@@ -12,7 +12,7 @@
     if (self) {
         // Initialize your properties here...
         self.callbackId = callbackId;
-        self.delegate = delegate;
+        self.commandDelegate = delegate;
     }
     return self;
 }
@@ -79,7 +79,7 @@
 }
 
 
-- (NSDictionary)show:(CDVInvokedUrlCommand*)command {
+- (NSDictionary*)show:(CDVInvokedUrlCommand*)command {
     NSDictionary* options = [command.arguments objectAtIndex:0];
     NSString* urlString = options[@"url"];
     self.URLString = urlString;
@@ -144,7 +144,7 @@ if (webView.superview != nil) {
     // [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     return @{@"event":@"opened"};
 }
-- (NSDictionary)hide:(CDVInvokedUrlCommand*)command {
+- (NSDictionary*)hide:(CDVInvokedUrlCommand*)command {
     [self.webView removeFromSuperview];
     // self.webView = nil;
     return @{@"event":@"closed"};

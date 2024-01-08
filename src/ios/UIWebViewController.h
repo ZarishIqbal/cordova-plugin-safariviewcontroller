@@ -4,7 +4,7 @@
 @interface UIWebViewController : UIViewController
 
 @property (nonatomic, copy) NSString* callbackId;
-@property (nonatomic, copy) CDVPlugin *plugin;
+@property (nonatomic, weak) id<CDVCommandDelegate> commandDelegate;
 @property (nonatomic, copy) NSString* URLString;
 @property (weak, nonatomic) IBOutlet UIView *barView;
 @property (weak, nonatomic) IBOutlet UITextField *urlField;
