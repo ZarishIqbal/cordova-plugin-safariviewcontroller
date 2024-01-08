@@ -7,7 +7,7 @@
 
 //initialize UIWebViewController
 - (void)pluginInitialize {
-    wc = [[UIWebViewController alloc] init];
+   wc = [[UIWebViewController alloc] initWithCallbackId:command.callbackId withDelegate:self.commandDelegate];
 }
 
 //check if UIWebViewController is available
@@ -19,7 +19,10 @@
 
 //open SafariViewController
 - (void)show:(CDVInvokedUrlCommand*)command {
-    [wc show:command];
+    NSDictionary *result = [wc show:command];
+    CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:result];
+    [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 //close SafariViewController

@@ -8,8 +8,9 @@
 }
 
 
--(id)initWithCallbackId:(NSString *)callbackId {
+-(id)initWithCallbackId:(NSString *)callbackId withDelegate:(CDVPlugin)delegate {
     self.callbackId = callbackId;
+    self.plugin = delegate;
     return self;
 }
 
@@ -75,22 +76,22 @@
 }
 
 
-- (void)show:(CDVInvokedUrlCommand*)command {
+- (NSDictionary)show:(CDVInvokedUrlCommand*)command {
     NSDictionary* options = [command.arguments objectAtIndex:0];
     NSString* urlString = options[@"url"];
     self.URLString = urlString;
     if (urlString == nil) {
-        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"url can't be empty"] callbackId:command.callbackId];
-        return;
+        // [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"url can't be empty"] callbackId:command.callbackId];
+        return @{@"error":@"url can't be empty"};
     }
     if (![[urlString lowercaseString] hasPrefix:@"http"]) {
-        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"url must start with http or https"] callbackId:command.callbackId];
-        return;
+        // [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"url must start with http or https"] callbackId:command.callbackId];
+         return @{@"error":@"url must start with http or https"};
     }
     NSURL *url = [NSURL URLWithString:urlString];
     if (url == nil) {
-        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"bad url"] callbackId:command.callbackId];
-        return;
+        // [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"bad url"] callbackId:command.callbackId];
+                return @{@"error":@"bad url"};
     }
 
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
@@ -135,17 +136,19 @@ if (webView.superview != nil) {
 } else {
     NSLog(@"The web view is not in the view hierarchy");
 }
-    CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"opened"}];
-    [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    // CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"opened"}];
+    // [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
+    // [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    return @{@"event":@"opened"};
 }
-- (void)hide:(CDVInvokedUrlCommand*)command {
+- (NSDictionary)hide:(CDVInvokedUrlCommand*)command {
     [self.webView removeFromSuperview];
     // self.webView = nil;
+    return @{@"event":@"closed"};
 
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"closed"}];
-    [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    // CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"closed"}];
+    // [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
+    // [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 

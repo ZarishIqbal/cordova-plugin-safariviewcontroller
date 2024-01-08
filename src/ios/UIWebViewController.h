@@ -4,6 +4,7 @@
 @interface UIWebViewController : UIViewController
 
 @property (nonatomic, copy) NSString* callbackId;
+@property (nonatomic, copy) CDVPlugin *plugin;
 @property (nonatomic, copy) NSString* URLString;
 @property (weak, nonatomic) IBOutlet UIView *barView;
 @property (weak, nonatomic) IBOutlet UITextField *urlField;
@@ -14,7 +15,7 @@
 @property (strong, nonatomic) WKWebView *webView;
 
 - (BOOL) isAvailable;
-- (void) show:(CDVInvokedUrlCommand*)command;
-- (void) hide:(CDVInvokedUrlCommand*)command;
+- (NSDictionary) show:(CDVInvokedUrlCommand*)command;
+- (NSDictionary) hide:(CDVInvokedUrlCommand*)command;
 
 @end
