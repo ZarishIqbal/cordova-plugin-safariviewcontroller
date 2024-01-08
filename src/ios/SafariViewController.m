@@ -12,7 +12,7 @@
 
 //check if UIWebViewController is available
 - (void)isAvailable:(CDVInvokedUrlCommand*)command {
-    BOOL available = [wc isAvailable:command];
+    BOOL available = [wc isAvailable];
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:available];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
