@@ -32,6 +32,10 @@
     <header-file src="src/ios/SafariViewController.h"/>
     <source-file src="src/ios/SafariViewController.m"/>
 
+    <header-file src="src/ios/UIWebViewController.h"/>
+    <source-file src="src/ios/UIWebViewController.m"/>
+
+
     <framework src="SafariServices.framework" weak="true"/>
     <config-file parent="NSAppTransportSecurity" target="*-Info.plist">
       <dict>
