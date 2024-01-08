@@ -29,6 +29,17 @@
     }
 
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+    configuration.preferences.minimumFontSize = 10;
+configuration.preferences.javaScriptEnabled = YES;
+configuration.preferences.javaScriptCanOpenWindowsAutomatically = NO;
+configuration.processPool = [[WKProcessPool alloc] init];
+configuration.userContentController = [[WKUserContentController alloc] init];
+configuration.websiteDataStore = [WKWebsiteDataStore defaultDataStore];
+configuration.suppressesIncrementalRendering = NO;
+configuration.applicationNameForUserAgent = @"MyApp";
+configuration.allowsAirPlayForMediaPlayback = YES;
+// configuration.allowsPictureInPictureMediaPlayback = YES;
+
     WKWebView *webView = [[WKWebView alloc] initWithFrame:self.viewController.view.frame configuration:configuration];
     webView.navigationDelegate = self;
     [self.viewController.view addSubview:webView];
@@ -44,7 +55,21 @@
     } else {
         NSLog(@"The request is not loading");
     }
-    
+
+// Add a check to see if the web view's frame is correct
+if (CGRectEqualToRect(webView.frame, self.viewController.view.frame)) {
+    NSLog(@"The web view's frame is correct");
+} else {
+    NSLog(@"The web view's frame is not correct");
+}
+
+
+// Add a check to see if the web view is in the view hierarchy
+if (webView.superview != nil) {
+    NSLog(@"The web view is in the view hierarchy");
+} else {
+    NSLog(@"The web view is not in the view hierarchy");
+}
     CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"opened"}];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
