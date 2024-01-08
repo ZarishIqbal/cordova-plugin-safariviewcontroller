@@ -4,7 +4,6 @@
 
 
 @interface SafariViewController : CDVPlugin <WKNavigationDelegate>
-@property (strong, nonatomic) WKWebView *webView;
 
 - (void) isAvailable:(CDVInvokedUrlCommand*)command;
 - (void) show:(CDVInvokedUrlCommand*)command;
