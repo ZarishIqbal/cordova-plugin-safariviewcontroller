@@ -7,10 +7,13 @@
     return available;
 }
 
-
--(id)initWithCallbackId:(NSString *)callbackId withDelegate:(CDVPlugin)delegate {
-    self.callbackId = callbackId;
-    self.plugin = delegate;
+- (instancetype)initWithCallbackId:(NSString *)callbackId withDelegate:(id<CDVCommandDelegate>)delegate {
+    self = [super init];
+    if (self) {
+        // Initialize your properties here...
+        self.callbackId = callbackId;
+        self.delegate = delegate;
+    }
     return self;
 }
 

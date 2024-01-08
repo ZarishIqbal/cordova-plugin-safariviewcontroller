@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (strong, nonatomic) WKWebView *webView;
 
+- (instancetype)initWithCallbackId:(NSString *)callbackId withDelegate:(id<CDVCommandDelegate>)delegate;
 - (BOOL) isAvailable;
 - (NSDictionary*) show:(CDVInvokedUrlCommand*)command;
 - (NSDictionary*) hide:(CDVInvokedUrlCommand*)command;
