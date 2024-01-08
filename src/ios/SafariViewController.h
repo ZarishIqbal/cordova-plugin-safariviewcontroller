@@ -5,6 +5,8 @@
 
 @interface SafariViewController : CDVPlugin <WKNavigationDelegate>
 
+@property (nonatomic, copy) NSString* callbackId;
+
 - (void) isAvailable:(CDVInvokedUrlCommand*)command;
 - (void) show:(CDVInvokedUrlCommand*)command;
 - (void) hide:(CDVInvokedUrlCommand*)command;
