@@ -1,19 +1,10 @@
 #import <Cordova/CDVPlugin.h>
-#import <SafariServices/SafariServices.h>
+#import <WebKit/WebKit.h>
 
-@protocol ActivityItemProvider
 
-- (NSArray<UIActivity *> *)safariViewController:(SFSafariViewController *)controller
-                            activityItemsForURL:(NSURL *)URL
-                                          title:(nullable NSString *)title;
 
-@end
-
-@interface SafariViewController : CDVPlugin <SFSafariViewControllerDelegate>
-
-@property (nonatomic, copy) NSString* callbackId;
-@property (nonatomic) bool animated;
-@property (nonatomic) id<ActivityItemProvider> activityItemProvider;
+@interface SafariViewController : CDVPlugin <WKNavigationDelegate>
+@property (strong, nonatomic) WKWebView *webView;
 
 - (void) isAvailable:(CDVInvokedUrlCommand*)command;
 - (void) show:(CDVInvokedUrlCommand*)command;
