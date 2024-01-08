@@ -98,19 +98,10 @@
     }
 
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
-    configuration.preferences.minimumFontSize = 10;
-    configuration.preferences.javaScriptEnabled = YES;
-    configuration.preferences.javaScriptCanOpenWindowsAutomatically = NO;
-    configuration.processPool = [[WKProcessPool alloc] init];
-    configuration.userContentController = [[WKUserContentController alloc] init];
-    configuration.websiteDataStore = [WKWebsiteDataStore defaultDataStore];
-    configuration.suppressesIncrementalRendering = NO;
-    configuration.applicationNameForUserAgent = @"MyApp";
-    configuration.allowsAirPlayForMediaPlayback = YES;
-    // configuration.allowsPictureInPictureMediaPlayback = YES;
+   
 
-    webView = [[WKWebView alloc] initWithFrame:self.viewController.view.frame configuration:configuration];
-    webView.navigationDelegate = self;
+    self.webView = [[WKWebView alloc] initWithFrame:self.viewController.view.frame configuration:configuration];
+    self.webView.navigationDelegate = self;
     [self.viewController.view addSubview:webView];
     self.callbackId = command.callbackId;
 
