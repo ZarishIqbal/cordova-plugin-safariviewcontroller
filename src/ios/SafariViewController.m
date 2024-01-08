@@ -40,7 +40,7 @@ configuration.applicationNameForUserAgent = @"MyApp";
 configuration.allowsAirPlayForMediaPlayback = YES;
 // configuration.allowsPictureInPictureMediaPlayback = YES;
 
-    WKWebView *webView = [[WKWebView alloc] initWithFrame:self.viewController.view.frame configuration:configuration];
+    webView = [[WKWebView alloc] initWithFrame:self.viewController.view.frame configuration:configuration];
     webView.navigationDelegate = self;
     [self.viewController.view addSubview:webView];
     self.callbackId = command.callbackId;
