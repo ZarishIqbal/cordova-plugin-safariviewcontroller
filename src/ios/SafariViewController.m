@@ -37,6 +37,14 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
 
+
+    // Add a check to see if the request is loading
+    if (webView.isLoading) {
+        NSLog(@"The request is loading");
+    } else {
+        NSLog(@"The request is not loading");
+    }
+    
     CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"opened"}];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
