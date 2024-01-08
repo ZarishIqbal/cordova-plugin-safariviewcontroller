@@ -1,10 +1,6 @@
 #import "UIWebViewController.h"
 
 @implementation UIWebViewController
-{
-    WKWebView *webView;
-}
-
 
 - (BOOL)isAvailable {
     BOOL available = NSClassFromString(@"UIWebViewController") != nil;
@@ -12,7 +8,7 @@
 }
 
 
--(callbackId)initWithCallbackId:(NSString *)callbackId {
+-(id)initWithCallbackId:(NSString *)callbackId {
     self.callbackId = callbackId;
     return self;
 }
