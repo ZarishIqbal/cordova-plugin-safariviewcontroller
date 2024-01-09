@@ -1,7 +1,7 @@
 #import <WebKit/WebKit.h>
 #import <Cordova/CDVPlugin.h>
 
-@interface UIWebViewController : UIViewController
+@interface UIWebViewController : UIViewController <WKNavigationDelegate>
 
 @property (nonatomic, copy) NSString* callbackId;
 @property (nonatomic, weak) id delegate;

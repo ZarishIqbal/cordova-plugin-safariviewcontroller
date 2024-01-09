@@ -100,9 +100,9 @@
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
    
 
-    self.webView = [[WKWebView alloc] initWithFrame:self.viewController.view.frame configuration:configuration];
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configuration];
     self.webView.navigationDelegate = self;
-    [self.viewController.view addSubview:webView];
+    [self.view addSubview:webView];
     self.callbackId = command.callbackId;
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -117,7 +117,7 @@
     }
 
 // Add a check to see if the web view's frame is correct
-if (CGRectEqualToRect(webView.frame, self.viewController.view.frame)) {
+if (CGRectEqualToRect(webView.frame, self.view.frame)) {
     NSLog(@"The web view's frame is correct");
 } else {
     NSLog(@"The web view's frame is not correct");
