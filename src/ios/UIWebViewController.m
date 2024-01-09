@@ -55,28 +55,28 @@
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+// - (void)viewDidLoad {
+//     [super viewDidLoad];
     
-    self.barView.frame = CGRectMake(0, 0, self.view.frame.size.width, 30);
+//     self.barView.frame = CGRectMake(0, 0, self.view.frame.size.width, 30);
     
-    [self.view insertSubview:self.webView belowSubview:self.progressView];
+//     [self.view insertSubview:self.webView belowSubview:self.progressView];
     
-    self.webView.translatesAutoresizingMaskIntoConstraints = NO;
-    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.webView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:1 constant:-44];
-    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.webView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
-    [self.view addConstraints:@[height, width]];
+//     self.webView.translatesAutoresizingMaskIntoConstraints = NO;
+//     NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.webView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:1 constant:-44];
+//     NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.webView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
+//     [self.view addConstraints:@[height, width]];
     
-    self.backButton.enabled = NO;
-    self.forwardButton.enabled = NO;
+//     self.backButton.enabled = NO;
+//     self.forwardButton.enabled = NO;
     
-    [self.webView addObserver:self forKeyPath:@"loading" options:NSKeyValueObservingOptionNew context:NULL];
-    [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:NULL];
+//     [self.webView addObserver:self forKeyPath:@"loading" options:NSKeyValueObservingOptionNew context:NULL];
+//     [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:NULL];
     
-    NSURL *url = [NSURL URLWithString:self.URLString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [self.webView loadRequest:request];
-}
+//     NSURL *url = [NSURL URLWithString:self.URLString];
+//     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//     [self.webView loadRequest:request];
+// }
 
 
 - (NSDictionary*)show:(CDVInvokedUrlCommand*)command {
@@ -105,31 +105,28 @@
     [self.view addSubview:self.webView];
     self.callbackId = command.callbackId;
 
+    self.barView.frame = CGRectMake(0, 0, self.view.frame.size.width, 30);
+    
+    [self.view insertSubview:self.webView belowSubview:self.progressView];
+    
+    self.webView.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *height = [NSLayoutConstraint constraintWithItem:self.webView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeHeight multiplier:1 constant:-44];
+    NSLayoutConstraint *width = [NSLayoutConstraint constraintWithItem:self.webView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
+    [self.view addConstraints:@[height, width]];
+    
+    self.backButton.enabled = NO;
+    self.forwardButton.enabled = NO;
+    
+    [self.webView addObserver:self forKeyPath:@"loading" options:NSKeyValueObservingOptionNew context:NULL];
+    [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:NULL];
+    
+    NSURL *url = [NSURL URLWithString:self.URLString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
+   
     [self.webView loadRequest:request];
 
 
-    // Add a check to see if the request is loading
-    if (self.webView.isLoading) {
-        NSLog(@"The request is loading");
-    } else {
-        NSLog(@"The request is not loading");
-    }
 
-// Add a check to see if the web view's frame is correct
-if (CGRectEqualToRect(self.webView.frame, self.view.frame)) {
-    NSLog(@"The web view's frame is correct");
-} else {
-    NSLog(@"The web view's frame is not correct");
-}
-
-
-// Add a check to see if the web view is in the view hierarchy
-if (self.webView.superview != nil) {
-    NSLog(@"The web view is in the view hierarchy");
-} else {
-    NSLog(@"The web view is not in the view hierarchy");
-}
     // CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"opened"}];
     // [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
     // [self.delegate sendPluginResult:pluginResult callbackId:command.callbackId];
