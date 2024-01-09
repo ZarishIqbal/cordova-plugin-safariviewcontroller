@@ -20,7 +20,7 @@
 //open SafariViewController
 - (void)show:(CDVInvokedUrlCommand*)command {
     NSDictionary *result = [wc show:command];
-    CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:result];
+    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:result];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
