@@ -7,12 +7,12 @@
     return available;
 }
 
-- (instancetype)initWithCallbackId:(NSString *)callbackId withDelegate:(id<CDVCommandDelegate>)delegate {
+- (instancetype)initWithCallbackId:(NSString *)callbackId withDelegate:(id)delegate {
     self = [super init];
     if (self) {
         // Initialize your properties here...
         self.callbackId = callbackId;
-        self.commandDelegate = delegate;
+        self.delegate= delegate;
     }
     return self;
 }
@@ -84,16 +84,16 @@
     NSString* urlString = options[@"url"];
     self.URLString = urlString;
     if (urlString == nil) {
-        // [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"url can't be empty"] callbackId:command.callbackId];
+        // [self.delegatesendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"url can't be empty"] callbackId:command.callbackId];
         return @{@"error":@"url can't be empty"};
     }
     if (![[urlString lowercaseString] hasPrefix:@"http"]) {
-        // [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"url must start with http or https"] callbackId:command.callbackId];
+        // [self.delegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"url must start with http or https"] callbackId:command.callbackId];
          return @{@"error":@"url must start with http or https"};
     }
     NSURL *url = [NSURL URLWithString:urlString];
     if (url == nil) {
-        // [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"bad url"] callbackId:command.callbackId];
+        // [self.delegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"bad url"] callbackId:command.callbackId];
                 return @{@"error":@"bad url"};
     }
 
@@ -132,7 +132,7 @@ if (webView.superview != nil) {
 }
     // CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"opened"}];
     // [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
-    // [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    // [self.delegate sendPluginResult:pluginResult callbackId:command.callbackId];
     return @{@"event":@"opened"};
 }
 - (NSDictionary*)hide:(CDVInvokedUrlCommand*)command {
@@ -142,7 +142,7 @@ if (webView.superview != nil) {
 
     // CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"closed"}];
     // [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
-    // [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    // [self.delegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 
@@ -152,7 +152,7 @@ if (webView.superview != nil) {
     // This method is called when the web view starts loading a new frame.
      CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"started",@"url": webView.URL.absoluteString}];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
+    [self.delegate sendPluginResult:pluginResult callbackId:self.callbackId];
 
 }
 
@@ -160,12 +160,12 @@ if (webView.superview != nil) {
     // This method is called when the web view finishes loading a frame.
      CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"finished"}];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
+    [self.delegate sendPluginResult:pluginResult callbackId:self.callbackId];
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     // This method is called when the web view’s navigation fails.
       CDVPluginResult * pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"event":@"failed"}];
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];
+    [self.delegate sendPluginResult:pluginResult callbackId:self.callbackId];
 }
