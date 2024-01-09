@@ -100,9 +100,9 @@
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
    
 
-    self.webView = [[WKWebView alloc] initWithFrame:self.viewController.view.frame configuration:configuration];
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configuration];
     self.webView.navigationDelegate = self;
-    [self.viewController.view addSubview:self.webView];
+    [self.view addSubview:self.webView];
     self.callbackId = command.callbackId;
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
