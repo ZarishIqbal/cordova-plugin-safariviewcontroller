@@ -120,7 +120,6 @@
     [self.webView addObserver:self forKeyPath:@"loading" options:NSKeyValueObservingOptionNew context:NULL];
     [self.webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:NULL];
     
-    NSURL *url = [NSURL URLWithString:self.URLString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
    
     [self.webView loadRequest:request];
