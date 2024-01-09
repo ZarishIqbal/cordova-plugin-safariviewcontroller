@@ -169,3 +169,6 @@ if (self.webView.superview != nil) {
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
     [self.delegate sendPluginResult:pluginResult callbackId:self.callbackId];
 }
+
+
+@end
