@@ -102,22 +102,22 @@
 
     self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:configuration];
     self.webView.navigationDelegate = self;
-    [self.view addSubview:webView];
+    [self.view addSubview:self.webView];
     self.callbackId = command.callbackId;
 
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:request];
+    [self.webView loadRequest:request];
 
 
     // Add a check to see if the request is loading
-    if (webView.isLoading) {
+    if (self.webView.isLoading) {
         NSLog(@"The request is loading");
     } else {
         NSLog(@"The request is not loading");
     }
 
 // Add a check to see if the web view's frame is correct
-if (CGRectEqualToRect(webView.frame, self.view.frame)) {
+if (CGRectEqualToRect(self.webView.frame, self.view.frame)) {
     NSLog(@"The web view's frame is correct");
 } else {
     NSLog(@"The web view's frame is not correct");
@@ -125,7 +125,7 @@ if (CGRectEqualToRect(webView.frame, self.view.frame)) {
 
 
 // Add a check to see if the web view is in the view hierarchy
-if (webView.superview != nil) {
+if (self.webView.superview != nil) {
     NSLog(@"The web view is in the view hierarchy");
 } else {
     NSLog(@"The web view is not in the view hierarchy");
