@@ -165,6 +165,26 @@
     [pluginResult setKeepCallback:[NSNumber numberWithBool:YES]];
     [self.delegate sendPluginResult:pluginResult callbackId:self.callbackId];
 }
-
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    // if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
+    //     NSURL *url = navigationAction.request.URL;
+    //     NSString *host = url.host;
+    //     if (host && ![host hasPrefix:@"www.google.com"] && [[UIApplication sharedApplication] canOpenURL:url]) {
+    //         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    //         NSLog(@"%@", url);
+    //         NSLog(@"Redirected to browser. No need to open it locally");
+    //         decisionHandler(WKNavigationActionPolicyCancel);
+    //         return;
+    //     } else {
+            NSLog(@"Open it locally");
+            decisionHandler(WKNavigationActionPolicyAllow);
+            return;
+    //     }
+    // } else {
+    //     NSLog(@"not a user click");
+    //     decisionHandler(WKNavigationActionPolicyAllow);
+    //     return;
+    // }
+}
 
 @end
