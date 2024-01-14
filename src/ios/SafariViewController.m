@@ -6,7 +6,7 @@
 }
 
 //initialize UIWebViewController
-- (void)pluginInitialize(CDVInvokedUrlCommand*)command {
+- (void)pluginInitialize:(CDVInvokedUrlCommand*)command {
    wc = [[UIWebViewController alloc] initWithCallbackId:command.callbackId withDelegate:self.commandDelegate];
 }
 
@@ -23,7 +23,7 @@
     // Code to execute if available is false
      wc = [[UIWebViewController alloc] initWithCallbackId:command.callbackId withDelegate:self.commandDelegate];
       BOOL available_now = [wc isAvailable];
-       CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:available_wc];
+       CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:available_now];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
    
